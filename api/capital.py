@@ -1,4 +1,4 @@
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler
 import requests
 import urllib.parse
 
@@ -11,7 +11,7 @@ class handler(BaseHTTPRequestHandler):
         query_params = urllib.parse.parse_qs(query)
 
         # Interact with the REST Countries API
-        response = requests.get("https://restcountries.com/v3.1/all")
+        response = requests.get("https://restcountries.com/v3.1/capital")
         countries = response.json()
 
         # Find the country or capital based on the query
