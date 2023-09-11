@@ -7,7 +7,9 @@ class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         # Parse the URL to get the query parameters
         url_components = parse.urlsplit(self.path)
+        print("URL components:", url_components)
         query_params = dict(parse.parse_qsl(url_components.query))
+        print("Query parameters:", query_params)
 
         # Base URL for the REST Countries API
         base_api_url = "https://restcountries.com/v3.1/"
@@ -45,7 +47,7 @@ class handler(BaseHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    server_address = ('localhost', 8000)  # use any available port
+    server_address = ('localhost', 3000)  # use any available port
     httpd = HTTPServer(server_address, handler)  # httpd is a commonly used abbreviation for "HTTP Daemon"
     print(f'Starting httpd server on {server_address[0]}:{server_address[1]}')
     httpd.serve_forever()
