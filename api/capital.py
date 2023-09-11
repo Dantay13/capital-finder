@@ -1,4 +1,4 @@
-from http.server import BaseHTTPRequestHandler
+from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib import parse
 import requests
 
@@ -43,3 +43,9 @@ class handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(message.encode())
 
+
+if __name__ == '__main__':
+    server_address = ('localhost', 8000)  # use any available port
+    httpd = HTTPServer(server_address, handler)  # httpd is a commonly used abbreviation for "HTTP Daemon"
+    print(f'Starting httpd server on {server_address[0]}:{server_address[1]}')
+    httpd.serve_forever()
